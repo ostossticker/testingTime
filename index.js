@@ -12,20 +12,23 @@ const port = process.env.PORT
 
 app.get('/',(req,res)=>{
     const today = new Date();
-    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const todayStart = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
     const todayEnd = new Date(todayStart);
-    todayEnd.setDate(todayEnd.getDate() + 1);
+    todayEnd.setUTCDate(todayEnd.getUTCDate() + 1);
 
     const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStart = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate());
-    return res.status(200).json({today:{
-        gte: todayStart.toISOString(),
-        lt: todayEnd.toISOString()
-    },yesterday:{
-        gte: yesterdayStart.toISOString(),
-        lt: todayStart.toISOString()
-    }})
+    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+    const yesterdayStart = new Date(Date.UTC(yesterday.getUTCFullYear(), yesterday.getUTCMonth(), yesterday.getUTCDate()));
+    return res.status(200).json({
+        today: {
+            gte: todayStart.toISOString(),
+            lt: todayEnd.toISOString()
+        },
+        yesterday: {
+            gte: yesterdayStart.toISOString(),
+            lt: todayStart.toISOString()
+        }
+    });
 })
 
 app.listen(port , ()=>{

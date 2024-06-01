@@ -23,8 +23,8 @@ app.get('/',(req,res)=>{
         gte: yesterdayStart.toISOString(),
         lt: todayStart.toISOString()
     },yesterday:{
-        gte:new Date(todayStart.getFullYear() , todayStart.getMonth() , todayStart.getDate() - 1).toISOString() ,
-        lt:new Date(todayEnd.getFullYear() , todayEnd.getMonth() , todayEnd.getDate() - 1).toISOString()
+        gte:new Date(todayStart.getFullYear() , todayStart.getMonth() , todayStart.getDate() - 2).toISOString() ,
+        lt:new Date(todayEnd.getFullYear() , todayEnd.getMonth() , todayEnd.getDate() - 2).toISOString()
     }})
 })
 
@@ -42,8 +42,8 @@ app.get('/month',(req,res)=>{
             lt: new Date(currentMonthLastDay.getFullYear() , currentMonthLastDay.getMonth() , currentMonthLastDay.getDate() -1).toISOString()
         },
         lastMonth:{
-            gte: new Date(lastMonthFirstDay.getFullYear() , lastMonthFirstDay.getMonth() , lastMonthFirstDay.getDate() - 2).toISOString(),
-            lt: new Date(lastMonthLastDay.getFullYear() , lastMonthLastDay.getMonth() , lastMonthLastDay.getDate() - 2).toISOString()
+            gte: new Date(lastMonthFirstDay.getFullYear() , lastMonthFirstDay.getMonth() , lastMonthFirstDay.getDate() - 1).toISOString(),
+            lt: new Date(lastMonthLastDay.getFullYear() , lastMonthLastDay.getMonth() , lastMonthLastDay.getDate() - 1).toISOString()
         }
     })
 })

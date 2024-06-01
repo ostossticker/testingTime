@@ -37,12 +37,12 @@ app.get('/month',(req,res)=>{
     const lastMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0); // Last day of the last month
     return res.status(200).json({
         thisMonth:{
-            gte: currentMonthFirstDay.toISOString(),
-            lt: currentMonthLastDay.toISOString()
+            gte: new Date(currentMonthFirstDay.getFullYear() , currentMonthFirstDay.getMonth() - 1 , currentMonthFirstDay.getDate() - 1).toISOString(),
+            lt: new Date(currentMonthLastDay.getFullYear() , currentMonthLastDay.getMonth() , currentMonthLastDay.getDate() -1).toISOString()
         },
         lastMonth:{
-            gte: lastMonthFirstDay.toISOString(),
-            lt: lastMonthLastDay.toISOString()
+            gte: new Date(lastMonthFirstDay.getFullYear() , lastMonthFirstDay.getMonth() - 1 , lastMonthFirstDay.getDate - 1).toISOString(),
+            lt: new Date(lastMonthLastDay.getFullYear() , lastMonthLastDay.getMonth() , lastMonthLastDay.getDate() - 1).toISOString()
         }
     })
 })

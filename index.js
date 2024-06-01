@@ -23,8 +23,8 @@ app.get('/',(req,res)=>{
         gte: yesterdayStart.toISOString(),
         lt: todayStart.toISOString()
     },yesterday:{
-        gte: todayStart.toISOString(),
-        lt: todayEnd.toISOString()
+        gte:new Date(todayStart.getFullYear() , todayStart.getMonth() - 1 , todayStart.getDate() - 2).toISOString() ,
+        lt:new Date(todayEnd.getFullYear() , todayEnd.getMonth() - 1 , todayEnd.getDate() - 2).toISOString()
     }})
 })
 

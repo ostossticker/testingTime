@@ -23,7 +23,7 @@ app.get('/',(req,res)=>{
             lt: new Date(currentMonthLastDay.getFullYear() , currentMonthLastDay.getMonth() , currentMonthLastDay.getDate() -1).toISOString()
         },
         lastMonth:{
-            gte: new Date(lastMonthFirstDay.getFullYear() , lastMonthFirstDay.getMonth() - 1 , lastMonthFirstDay.getDate - 1).toISOString(),
+            gte: new Date(lastMonthFirstDay.getFullYear() , lastMonthFirstDay.getMonth() - 1 , lastMonthFirstDay.getDate() - 1).toISOString(),
             lt: new Date(lastMonthLastDay.getFullYear() , lastMonthLastDay.getMonth() , lastMonthLastDay.getDate() - 1).toISOString()
         }
     })

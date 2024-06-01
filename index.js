@@ -28,6 +28,25 @@ app.get('/',(req,res)=>{
     }})
 })
 
+app.get('/month',(req,res)=>{
+    const today = new Date();
+    const currentMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1); // First day of the current month
+    const currentMonthLastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Last day of the current month
+
+    const lastMonthFirstDay = new Date(today.getFullYear(), today.getMonth() - 1, 1); // First day of the last month
+    const lastMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0); // Last day of the last month
+    return res.status(200).json({
+        thisMonth:{
+            gte: currentMonthFirstDay.toISOString(),
+            lt: currentMonthLastDay.toISOString()
+        },
+        lastMonth:{
+            gte: lastMonthFirstDay.toISOString(),
+            lt: lastMonthLastDay.toISOString()
+        }
+    })
+})
+
 app.listen(port , ()=>{
     console.log(`server running ${port}`)
 })

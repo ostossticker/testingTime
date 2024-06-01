@@ -12,24 +12,6 @@ const port = process.env.PORT
 
 app.get('/',(req,res)=>{
     const today = new Date();
-    const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const todayEnd = new Date(todayStart);
-    todayEnd.setDate(todayEnd.getDate() + 1);
-
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStart = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate());
-    return res.status(200).json({today:{
-        gte: yesterdayStart.toISOString(),
-        lt: todayStart.toISOString()
-    },yesterday:{
-        gte:new Date( today.getFullYear(), todayStart.getMonth() ,todayStart.getDate() - 2,0).toISOString(),
-        lt:new Date(todayEnd.getFullYear(), todayStart.getMonth() ,todayStart.getDate() - 1,0).toISOString()
-    }})
-})
-
-app.get('/month',(req,res)=>{
-    const today = new Date();
     const currentMonthFirstDay = new Date(today.getFullYear(), today.getMonth(), 1); // First day of the current month
     const currentMonthLastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Last day of the current month
 
